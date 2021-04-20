@@ -8,6 +8,7 @@ import {
   ActivityIndicator,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import Post from "../components/Post";
 
 const data = {
   posts: [
@@ -15,7 +16,13 @@ const data = {
       id: 1,
       title: "Hello World!",
       link: "https://google.com",
-      imageUrl: "https://picsum.photos/200/300",
+      imageUrl: "https://picsum.photos/600/900",
+    },
+    {
+      id: 2,
+      title: "Welcome to reddit! oontz oontz",
+      link: "https://google.com",
+      imageUrl: "https://picsum.photos/500/800",
     },
   ],
 };
@@ -29,7 +36,7 @@ export default function Posts(props) {
       <FlatList
         data={posts}
         keyExtractor={(item, index) => `${index}`}
-        renderItem={({ item, index }) => <Text>{item.title}</Text>}
+        renderItem={({ item, index }) => <Post post={item} />}
       />
     </View>
   );
@@ -39,6 +46,5 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    justifyContent: "space-around'",
   },
 });
