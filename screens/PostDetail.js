@@ -3,18 +3,28 @@ import { StyleSheet, View, Text, Image, Dimensions } from "react-native";
 import RoundedButton from "../components/RoundedButton";
 import { Ionicons } from "@expo/vector-icons";
 import { Linking } from "expo";
+import { useMutation } from "@apollo/react-hooks";
+import gql from "graphql-tag";
 
 const { width } = Dimensions.get("window");
+
+const DELETE_POST = gql`
+  mutation DeletePost($id: ID!) {
+    deletePost(id: $id)
+  }
+`;
 
 export default function PostDetail({ route, navigation }) {
   const { params } = route;
   const { post } = params;
-  const { title, link, imageUrl } = post;
+  const { id, title, link, imageUrl } = post;
+  const [deletePost] = useMutation(DELETE_POST);
 
   return (
     <View style={styles.container}>
       {!!imageUrl && <Image style={styles.image} source={{ uri: imageUrl }} />}
       <Text style={styles.text}>{title}</Text>
+
       <RoundedButton
         text={link}
         textColor="#fff"
@@ -31,6 +41,7 @@ export default function PostDetail({ route, navigation }) {
           />
         }
       />
+
       <RoundedButton
         text="Edit"
         textColor="#fff"
@@ -41,6 +52,25 @@ export default function PostDetail({ route, navigation }) {
         icon={
           <Ionicons
             name="md-options"
+            size={20}
+            color={"#fff"}
+            style={styles.saveIcon}
+          />
+        }
+      />
+
+      <RoundedButton
+        text="Delete"
+        textColor="#fff"
+        backgroundColor="#FA8072"
+        onPress={() => {
+          deletePost({ variables: { id: id } })
+            .then(() => navigation.goBack())
+            .catch((err) => console.log("err deleting", err));
+        }}
+        icon={
+          <Ionicons
+            name="md-trash"
             size={20}
             color={"#fff"}
             style={styles.saveIcon}
