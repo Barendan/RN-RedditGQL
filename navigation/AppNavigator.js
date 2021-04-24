@@ -5,6 +5,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import Posts from "../screens/Posts";
 import PostDetail from "../screens/PostDetail";
 import PostForm from "../screens/PostForm";
+import EditForm from "../screens/EditForm";
 import { Ionicons } from "@expo/vector-icons";
 
 const Stack = createStackNavigator();
@@ -37,6 +38,7 @@ export default function AppNavigator() {
         />
         <Stack.Screen name="Detail" component={PostDetail} />
         <Stack.Screen name="PostForm" component={PostForm} />
+        <Stack.Screen name="EditForm" component={EditForm} />
       </Stack.Navigator>
     </NavigationContainer>
   );

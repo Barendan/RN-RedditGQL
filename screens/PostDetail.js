@@ -6,7 +6,7 @@ import { Linking } from "expo";
 
 const { width } = Dimensions.get("window");
 
-export default function PostDetail({ route }) {
+export default function PostDetail({ route, navigation }) {
   const { params } = route;
   const { post } = params;
   const { title, link, imageUrl } = post;
@@ -25,6 +25,22 @@ export default function PostDetail({ route }) {
         icon={
           <Ionicons
             name="md-link"
+            size={20}
+            color={"#fff"}
+            style={styles.saveIcon}
+          />
+        }
+      />
+      <RoundedButton
+        text="Edit"
+        textColor="#fff"
+        backgroundColor="#a9a9a9"
+        onPress={() => {
+          navigation.navigate("EditForm", { post: post });
+        }}
+        icon={
+          <Ionicons
+            name="md-options"
             size={20}
             color={"#fff"}
             style={styles.saveIcon}
