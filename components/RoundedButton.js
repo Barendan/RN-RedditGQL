@@ -13,7 +13,7 @@ export default function RoundedButton(props) {
         { backgroundColor: backgroundColor || "transparent" },
       ]}
     >
-      <View style={styles.ButtonTextWrapper}>
+      <View style={styles.buttonTextWrapper}>
         {icon}
         <Text style={[{ color }, styles.buttonText]}>{text}</Text>
       </View>
@@ -25,15 +25,15 @@ const styles = StyleSheet.create({
   wrapper: {
     padding: 15,
     display: "flex",
-    borderRadius: 10,
+    borderRadius: 40,
     borderWidth: StyleSheet.hairlineWidth,
     borderColor: "white",
     marginBottom: 15,
     alignItems: "center",
-    width: "50%",
   },
   buttonText: {
     fontSize: 20,
+    width: "50%",
     textAlign: "center",
   },
   buttonTextWrapper: {
