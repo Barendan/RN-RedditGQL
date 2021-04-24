@@ -9,8 +9,8 @@ const HTTP_URL = "http://";
 const HTTPS_URL = "https://";
 const WS_URL = "ws://";
 const WSS_URL = "wss://";
-const DEV_URL = "localhost:4000/graphql";
-const BASE_URL = "<EXAMPLE-GRAPHQL-URL.herokuapp.com/graphql>";
+const DEV_URL = "10.0.0.8:4000/graphql";
+const BASE_URL = "https://graphql-reddit1.herokuapp.com/graphql";
 
 const httpLink = new HttpLink({
   uri: `${HTTP_URL}${DEV_URL}`,
@@ -18,6 +18,10 @@ const httpLink = new HttpLink({
 
 const wsLink = new WebSocketLink({
   uri: `${WS_URL}${DEV_URL}`,
+  options: {
+    lazy: true,
+    reconnect: true,
+  },
 });
 
 const link = split(
