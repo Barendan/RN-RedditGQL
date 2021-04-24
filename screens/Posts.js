@@ -36,7 +36,12 @@ export default function Posts(props) {
       <FlatList
         data={posts}
         keyExtractor={(item, index) => `${index}`}
-        renderItem={({ item, index }) => <Post post={item} />}
+        renderItem={({ item, index }) => (
+          <Post
+            post={item}
+            onPress={() => navigation.navigate("Detail", { post: item })}
+          />
+        )}
       />
     </View>
   );

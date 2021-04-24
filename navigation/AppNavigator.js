@@ -3,6 +3,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
 import Posts from "../screens/Posts";
+import PostDetail from "../screens/PostDetail";
 
 const Stack = createStackNavigator();
 
@@ -14,6 +15,7 @@ export default function AppNavigator() {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen name="Posts" component={Posts} />
+        <Stack.Screen name="Detail" component={PostDetail} />
       </Stack.Navigator>
     </NavigationContainer>
   );
